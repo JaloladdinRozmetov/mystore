@@ -84,6 +84,7 @@ return [
     */
 
     'locale' => 'en',
+    'available_locales' => ['uz', 'ru', 'en'], // Supported languages
 
     /*
     |--------------------------------------------------------------------------

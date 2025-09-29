@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\SiteSetting;
 use App\Modifiers\ShippingModifier;
 use Illuminate\Support\ServiceProvider;
 use Lunar\Admin\Support\Facades\LunarPanel;
@@ -37,5 +38,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Models\Product::class,
             // \App\Models\CustomProduct::class,
         );
+
+        view()->composer('*', function ($view) {
+            $siteSetting = SiteSetting::where('key', 'site')->first();
+            $view->with('siteSetting', $siteSetting);
+        });
     }
 }

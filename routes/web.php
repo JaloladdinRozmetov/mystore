@@ -1,32 +1,25 @@
 <?php
 
-use App\Livewire\CheckoutPage;
-use App\Livewire\CheckoutSuccessPage;
-use App\Livewire\CollectionPage;
-use App\Livewire\Home;
-use App\Livewire\ProductPage;
-use App\Livewire\SearchPage;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('/', function () {
+    return redirect(config('app.locale'));
+});
 
-Route::get('/', Home::class);
+Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->group(function () {
+    Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact');
+    Route::get('/about', [\App\Http\Controllers\AboutController::class, 'index'])->name('about');
+    Route::get('/service', [\App\Http\Controllers\AboutController::class, 'index'])->name('service');
+    Route::get('/blog', [\App\Http\Controllers\AboutController::class, 'index'])->name('blog');
 
-Route::get('/collections/{slug}', CollectionPage::class)->name('collection.view');
 
-Route::get('/products/{slug}', ProductPage::class)->name('product.view');
+    Route::middleware('auth')->group(function () {
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    });
+    require __DIR__.'/auth.php';
 
-Route::get('search', SearchPage::class)->name('search.view');
-
-Route::get('checkout', CheckoutPage::class)->name('checkout.view');
-
-Route::get('checkout/success', CheckoutSuccessPage::class)->name('checkout-success.view');
+});
