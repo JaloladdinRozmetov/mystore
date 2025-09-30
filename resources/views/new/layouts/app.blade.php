@@ -63,13 +63,26 @@
             </div>
             <div class="d-none d-xl-flex me-5">
                 <div class="d-flex flex-column pe-3 border-end border-primary">
-                    <button class="btn btn-primary rounded-pill d-inline-flex flex-shrink-0 py-2 px-4"
-                            data-bs-toggle="modal" data-bs-target="#searchModal">Search<i class="fas fa-search"></i></button>
+                    <button class="btn btn-primary rounded-pill flex-shrink-0 py-2 px-4"
+                            data-bs-toggle="modal" data-bs-target="#searchModal">{{__('messages.search')}}<i class="fas fa-search"></i></button>
                 </div>
             </div>
             <div class="d-none d-xl-flex me-5">
                 <div class="d-flex flex-column">
-                    <a href="#" class="btn btn-primary rounded-pill d-inline-flex flex-shrink-0 py-2 px-4">Order Now</a>
+
+                    @auth
+                        <span class="btn btn-outline-primary rounded-pill d-inline-flex flex-shrink-0 py-2 px-4">
+                {{ auth()->user()->name }}
+            </span>
+                    @endauth
+
+                    @guest
+                        <a href="{{ route('login', app()->getLocale()) }}"
+                           class="btn btn-primary rounded-pill d-inline-flex flex-shrink-0 py-2 px-4">
+                            {{ __('messages.login') }}
+                        </a>
+                    @endguest
+
                 </div>
             </div>
 
