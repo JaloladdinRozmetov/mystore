@@ -12,7 +12,6 @@ class SetLocale
 {
     public function handle(Request $request, Closure $next)
     {
-        // If URL starts with "lunar", skip locale handling
         if ($request->is('livewire*')) {
             return $next($request);
         }
@@ -23,7 +22,6 @@ class SetLocale
         if (in_array($locale, $availableLocales)) {
             App::setLocale($locale);
         } else {
-            // Redirect to default locale
             $locale = config('app.locale', 'uz');
             return redirect()->to($locale . '/' . $request->path());
         }
