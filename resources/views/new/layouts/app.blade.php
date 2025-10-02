@@ -44,9 +44,8 @@
 <!-- Navbar & Hero wrapper (hero/carousel goes inside -->
 <div class="container-fluid position-relative p-0">
     <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-        <a href="{{ url('/') }}" class="navbar-brand p-0">
-            <h1 class="text-primary"><i class="fas fa-hand-holding-water me-3"></i>Acuas</h1>
-            {{-- <img src="{{ asset('img/logo.png') }}" alt="Logo"> --}}
+        <a href="{{ url('/') }}" class="navbar-brand p-3">
+            <h1 class="text-primary"><img width="100" height="350" src="{{ asset('acuas/img/logo.png') }}" alt="Logo">IDEALMETER</h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="fa fa-bars"></span>

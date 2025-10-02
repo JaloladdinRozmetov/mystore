@@ -13,5 +13,6 @@ return [
     'confirm_password'  => 'Confirm Password',
     'already_registered'=> 'Already registered?',
     'search' => 'Search',
+    'contact_sent' => 'Your message has been sent!',
 
 ];
