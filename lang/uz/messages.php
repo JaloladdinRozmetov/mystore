@@ -13,5 +13,6 @@ return [
     'confirm_password'  => 'Parolni tasdiqlang',
     'already_registered'=> 'Allaqachon ro‘yxatdan o‘tganmisiz?',
     'search' => 'Qidirish',
+    'contact_sent' => 'Xabaringiz yuborildi!',
 
 ];

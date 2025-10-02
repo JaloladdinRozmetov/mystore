@@ -13,5 +13,6 @@ return [
     'confirm_password'  => 'Подтвердите пароль',
     'already_registered'=> 'Уже зарегистрированы?',
     'search' => 'Поиск',
+    'contact_sent' => 'Ваше сообщение отправлено!',
 
 ];
