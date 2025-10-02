@@ -44,9 +44,8 @@
 <!-- Navbar & Hero wrapper (hero/carousel goes inside -->
 <div class="container-fluid position-relative p-0">
     <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-        <a href="{{ url('/') }}" class="navbar-brand p-0">
-            <h1 class="text-primary"><i class="fas fa-hand-holding-water me-3"></i>Acuas</h1>
-            {{-- <img src="{{ asset('img/logo.png') }}" alt="Logo"> --}}
+        <a href="{{ url('/') }}" class="navbar-brand p-3">
+            <h1 class="text-primary"><img width="100" height="350" src="{{ asset('acuas/img/logo.png') }}" alt="Logo">IDEALMETER</h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="fa fa-bars"></span>
@@ -63,13 +62,26 @@
             </div>
             <div class="d-none d-xl-flex me-5">
                 <div class="d-flex flex-column pe-3 border-end border-primary">
-                    <button class="btn btn-primary rounded-pill d-inline-flex flex-shrink-0 py-2 px-4"
-                            data-bs-toggle="modal" data-bs-target="#searchModal">Search<i class="fas fa-search"></i></button>
+                    <button class="btn btn-primary rounded-pill flex-shrink-0 py-2 px-4"
+                            data-bs-toggle="modal" data-bs-target="#searchModal">{{__('messages.search')}}<i class="fas fa-search"></i></button>
                 </div>
             </div>
             <div class="d-none d-xl-flex me-5">
                 <div class="d-flex flex-column">
-                    <a href="#" class="btn btn-primary rounded-pill d-inline-flex flex-shrink-0 py-2 px-4">Order Now</a>
+
+                    @auth
+                        <span class="btn btn-outline-primary rounded-pill d-inline-flex flex-shrink-0 py-2 px-4">
+                {{ auth()->user()->name }}
+            </span>
+                    @endauth
+
+                    @guest
+                        <a href="{{ route('login', app()->getLocale()) }}"
+                           class="btn btn-primary rounded-pill d-inline-flex flex-shrink-0 py-2 px-4">
+                            {{ __('messages.login') }}
+                        </a>
+                    @endguest
+
                 </div>
             </div>
 

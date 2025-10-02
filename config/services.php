@@ -35,5 +35,13 @@ return [
         'public_key' => env('STRIPE_KEY'),
         'key' => env('STRIPE_SECRET'),
     ],
+    'telegram' => [
+        'bot_token' => env('TELEGRAM_BOT_TOKEN'),
+        'chat_id'   => env('TELEGRAM_CHAT_ID'), // кастомное поле для удобства
+    ],
+    'telegram-bot-api' => [
+        'token' => env('TELEGRAM_BOT_TOKEN', 'YOUR BOT TOKEN HERE')
+    ],
+
 
 ];
