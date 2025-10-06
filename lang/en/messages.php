@@ -14,5 +14,9 @@ return [
     'already_registered'=> 'Already registered?',
     'search' => 'Search',
     'contact_sent' => 'Your message has been sent!',
+    'news' => 'News',
+    'news_blog' => 'News & Blog',
+    'our_news_blog' => 'Our News & Blog',
+    'read_more' => 'Read More',
 
 ];
