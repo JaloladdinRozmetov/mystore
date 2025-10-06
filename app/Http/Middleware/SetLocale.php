@@ -12,7 +12,7 @@ class SetLocale
 {
     public function handle(Request $request, Closure $next)
     {
-        if ($request->is('livewire*')) {
+        if ($request->is('livewire*') or $request->is('admin*')) {
             return $next($request);
         }
 

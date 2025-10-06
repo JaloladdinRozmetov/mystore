@@ -14,5 +14,8 @@ return [
     'already_registered'=> 'Allaqachon ro‘yxatdan o‘tganmisiz?',
     'search' => 'Qidirish',
     'contact_sent' => 'Xabaringiz yuborildi!',
-
+    'news' => 'Yangiliklar',
+    'news_blog' => 'Yangiliklar & Blog',
+    'our_news_blog' => 'Bizning Yangiliklar va Blog',
+    'read_more' => 'Batafsil',
 ];

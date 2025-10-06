@@ -2,8 +2,13 @@
 
 namespace App\Providers;
 
+use App\Filament\Resources\ContactResource;
+use App\Filament\Resources\NewsResource;
+use App\Models\News;
 use App\Models\SiteSetting;
 use App\Modifiers\ShippingModifier;
+use App\Observers\NewsObserver;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Lunar\Admin\Support\Facades\LunarPanel;
 use Lunar\Base\ShippingModifiers;
@@ -17,9 +22,18 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         LunarPanel::panel(
-            fn ($panel) => $panel->plugins([
+            fn ($panel) =>
+            $panel
+                ->resources([
+                ContactResource::class,
+                    NewsResource::class,
+
+                    ])
+                ->plugins([
                 new ShippingPlugin,
-            ])
+                    ])
+                ->path('admin')
+
         )
             ->register();
     }
@@ -38,7 +52,9 @@ class AppServiceProvider extends ServiceProvider
             \App\Models\Product::class,
             // \App\Models\CustomProduct::class,
         );
+        Paginator::useBootstrapFive();
 
+        News::observe(NewsObserver::class);
         view()->composer('*', function ($view) {
             $siteSetting = SiteSetting::where('key', 'site')->first();
             $view->with('siteSetting', $siteSetting);

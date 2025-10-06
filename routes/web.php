@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,10 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->group(function ()
 
     //Contact routes
     Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
+    //News pages for users
+    Route::get('/news', [NewsController::class, 'index'])->name('news');
+    Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
 
     require __DIR__.'/auth.php';
 
