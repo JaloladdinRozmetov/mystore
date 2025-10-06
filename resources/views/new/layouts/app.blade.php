@@ -45,7 +45,10 @@
 <div class="container-fluid position-relative p-0">
     <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
         <a href="{{ url('/') }}" class="navbar-brand p-3">
-            <h1 class="text-primary"><img width="100" height="350" src="{{ asset('acuas/img/logo.png') }}" alt="Logo">IDEALMETER</h1>
+            <h1 class="text-primary">
+                {{--                <img width="100" height="350" src="{{ asset('acuas/img/logo.png') }}" alt="Logo">--}}
+                IDEALMETER
+            </h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="fa fa-bars"></span>
@@ -56,32 +59,46 @@
                    class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
                 <a href="{{ route('about',app()->getLocale()) }}" class="nav-item nav-link">About</a>
                 <a href="{{ route('service',app()->getLocale()) }}" class="nav-item nav-link">Service</a>
-                <a href="{{ route('blog',app()->getLocale()) }}" class="nav-item nav-link">Blog</a>
+                <a href="{{ route('news',app()->getLocale()) }}" class="nav-item nav-link">{{__('messages.news')}}</a>
                 <a href="{{ route('contact',app()->getLocale()) }}"
                    class="nav-item nav-link">{{__('messages.contact')}}</a>
             </div>
             <div class="d-none d-xl-flex me-5">
                 <div class="d-flex flex-column pe-3 border-end border-primary">
                     <button class="btn btn-primary rounded-pill flex-shrink-0 py-2 px-4"
-                            data-bs-toggle="modal" data-bs-target="#searchModal">{{__('messages.search')}}<i class="fas fa-search"></i></button>
+                            data-bs-toggle="modal" data-bs-target="#searchModal">{{__('messages.search')}}<i
+                            class="fas fa-search"></i></button>
                 </div>
             </div>
             <div class="d-none d-xl-flex me-5">
                 <div class="d-flex flex-column">
 
                     @auth
-                        <span class="btn btn-outline-primary rounded-pill d-inline-flex flex-shrink-0 py-2 px-4">
-                {{ auth()->user()->name }}
-            </span>
-                    @endauth
+                        <div class="nav-item dropdown">
+                        <span class="btn btn-outline-primary rounded-pill d-inline-flex flex-shrink-0 py-1 px-1">
 
+                            <a href="#" class="nav-link dropdown-toggle"
+                               data-bs-toggle="dropdown">
+    {{ \Illuminate\Support\Str::limit(auth()->user()->name, 12) }}
+</a>
+                            <div class="dropdown-menu m-0">
+
+                                <form method="POST" action="{{ route('logout',app()->getLocale()) }}">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item">{{ __('Logout') }}</button>
+                                </form>
+                            </div>
+                        </span>
+
+                        </div>
+
+                    @endauth
                     @guest
                         <a href="{{ route('login', app()->getLocale()) }}"
                            class="btn btn-primary rounded-pill d-inline-flex flex-shrink-0 py-2 px-4">
                             {{ __('messages.login') }}
                         </a>
                     @endguest
-
                 </div>
             </div>
 
