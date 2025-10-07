@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Filament\Resources\ContactResource;
 use App\Filament\Resources\NewsResource;
+use App\Filament\Resources\UserResource;
 use App\Models\News;
 use App\Models\SiteSetting;
 use App\Modifiers\ShippingModifier;
@@ -27,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
                 ->resources([
                 ContactResource::class,
                     NewsResource::class,
+                    UserResource::class,
 
                     ])
                 ->plugins([
