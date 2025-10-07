@@ -18,5 +18,15 @@ return [
     'news_blog' => 'News & Blog',
     'our_news_blog' => 'Our News & Blog',
     'read_more' => 'Read More',
+    'brands' => [
+        'title' => 'Brands',
+        'our'   => 'Our brands',
+        'name'  => 'Brand name',
+        'list'  => 'Brand list',
+        'create' => 'Add new brand',
+        'edit'   => 'Edit brand',
+        'delete' => 'Delete brand',
+        'no_brands' => 'No brands available',
+    ],
 
 ];

@@ -58,7 +58,7 @@
                 <a href="{{ route('home',app()->getLocale()) }}"
                    class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
                 <a href="{{ route('about',app()->getLocale()) }}" class="nav-item nav-link">About</a>
-                <a href="{{ route('service',app()->getLocale()) }}" class="nav-item nav-link">Service</a>
+                <a href="{{ route('brands',app()->getLocale()) }}" class="nav-item nav-link">{{__('messages.brands.title')}}</a>
                 <a href="{{ route('news',app()->getLocale()) }}" class="nav-item nav-link">{{__('messages.news')}}</a>
                 <a href="{{ route('contact',app()->getLocale()) }}"
                    class="nav-item nav-link">{{__('messages.contact')}}</a>

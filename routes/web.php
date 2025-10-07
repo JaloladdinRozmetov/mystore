@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
@@ -32,6 +33,8 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->group(function ()
     Route::get('/news', [NewsController::class, 'index'])->name('news');
     Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
 
+    //Brands page
+    Route::get('/brands',[BrandController::class,'index'])->name('brands');
     require __DIR__.'/auth.php';
 
 });
