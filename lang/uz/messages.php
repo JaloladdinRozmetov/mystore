@@ -18,4 +18,14 @@ return [
     'news_blog' => 'Yangiliklar & Blog',
     'our_news_blog' => 'Bizning Yangiliklar va Blog',
     'read_more' => 'Batafsil',
+    'brands' => [
+        'title' => 'Brendlar',
+        'our'   => 'Bizning brendlar',
+        'name'  => 'Brend nomi',
+        'list'  => 'Brendlar roʻyxati',
+        'create' => 'Yangi brend qo‘shish',
+        'edit'   => 'Brendni tahrirlash',
+        'delete' => 'Brendni o‘chirish',
+        'no_brands' => 'Brendlar mavjud emas',
+    ],
 ];
