@@ -4,6 +4,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -35,6 +36,9 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->group(function ()
 
     //Brands page
     Route::get('/brands',[BrandController::class,'index'])->name('brands');
+
+    //Services page
+    Route::get('services',[ServiceController::class,'index'])->name('services');
     require __DIR__.'/auth.php';
 
 });

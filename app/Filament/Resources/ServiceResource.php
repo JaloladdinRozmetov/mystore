@@ -2,34 +2,37 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\NewsResource\Pages;
-use App\Models\News;
+use App\Filament\Resources\ServiceResource\Pages;
+use App\Filament\Resources\ServiceResource\RelationManagers;
+use App\Models\Service;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Forms\Components\Tabs;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\ToggleButtons;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\ToggleButtons;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
-use App\Filament\Resources\NewsResource\RelationManagers;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Str;
 
-class NewsResource extends Resource
+class ServiceResource extends Resource
 {
-    protected static ?string $model = News::class;
+    protected static ?string $model = Service::class;
 
     protected static ?string $navigationGroup = 'Content';
-    protected static ?string $navigationIcon  = 'heroicon-o-newspaper';
-    protected static ?string $navigationLabel = 'News';
-    protected static ?int    $navigationSort  = 20;
+    protected static ?string $navigationIcon  = 'heroicon-o-cog-6-tooth';
+    protected static ?string $navigationLabel = 'Services';
+    protected static ?int    $navigationSort  = 21;
 
     public static function form(Form $form): Form
     {
@@ -37,19 +40,21 @@ class NewsResource extends Resource
             Section::make('Publish')
                 ->columns(3)
                 ->schema([
-                    ToggleButtons::make('status')
+                    ToggleButtons::make('is_active')
                         ->inline()
                         ->options([
-                            'draft'     => 'Draft',
-                            'published' => 'Published',
+                            '0'     => 'Draft',
+                            '1' => 'Published',
                         ])
                         ->required()
                         ->default('draft'),
+
                     DateTimePicker::make('published_at')
                         ->label('Published at')
                         ->seconds(false)
                         ->helperText('Required if status is Published')
                         ->visible(fn ($get) => $get('status') === 'published'),
+
                     TextInput::make('slug')
                         ->label('Slug')
                         ->helperText('Auto-filled from UZ title; you can edit.')
@@ -69,26 +74,26 @@ class NewsResource extends Resource
                                 ->reactive()
                                 ->afterStateUpdated(function ($state, callable $set, callable $get) {
                                     if (blank($get('slug'))) {
-                                        $set('slug', \Illuminate\Support\Str::slug($state));
+                                        $set('slug', Str::slug($state));
                                     }
                                 }),
+
                             TextInput::make('excerpt_uz')
                                 ->label('Excerpt (UZ)')
-                                ->required()
                                 ->maxLength(255),
-                            MarkdownEditor::make('description_uz')
-                                ->label('Description (UZ)')
-                                ->required(),
+
+                            MarkdownEditor::make('content_uz')
+                                ->label('Content (UZ)'),
                         ]),
                         Tabs\Tab::make('RU')->schema([
                             TextInput::make('title_ru')->label('Title (RU)')->maxLength(255),
                             TextInput::make('excerpt_ru')->label('Excerpt (RU)')->maxLength(255),
-                            MarkdownEditor::make('description_ru')->label('Description (RU)'),
+                            MarkdownEditor::make('content_ru')->label('Content (RU)'),
                         ]),
                         Tabs\Tab::make('EN')->schema([
                             TextInput::make('title_en')->label('Title (EN)')->maxLength(255),
                             TextInput::make('excerpt_en')->label('Excerpt (EN)')->maxLength(255),
-                            MarkdownEditor::make('description_en')->label('Description (EN)'),
+                            MarkdownEditor::make('content_en')->label('Content (EN)'),
                         ]),
                     ])->persistTabInQueryString(),
                 ]),
@@ -103,14 +108,17 @@ class NewsResource extends Resource
                     ->label('ID')
                     ->sortable()
                     ->toggleable(),
-
-                // Table shows only UZ (no localization here)
                 TextColumn::make('title_uz')
                     ->label('Title')
                     ->limit(60)
                     ->searchable(),
 
-                TextColumn::make('status')
+                TextColumn::make('excerpt_uz')
+                    ->label('Excerpt')
+                    ->limit(60)
+                    ->searchable(),
+
+                TextColumn::make('is_active')
                     ->badge()
                     ->colors([
                         'warning' => 'draft',
@@ -118,21 +126,16 @@ class NewsResource extends Resource
                     ])
                     ->sortable(),
 
-                TextColumn::make('published_at')
-                    ->dateTime()
-                    ->sortable(),
-
-                TextColumn::make('author.name')
-                    ->label('Author')
-                    ->toggleable(isToggledHiddenByDefault: true),
-
                 TextColumn::make('slug')
                     ->limit(30)
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 SelectFilter::make('status')
-                    ->options(['draft' => 'Draft', 'published' => 'Published']),
+                    ->options([
+                        'draft'     => 'Draft',
+                        'published' => 'Published',
+                    ]),
                 TrashedFilter::make(),
             ])
             ->defaultSort('id', 'desc')
@@ -152,24 +155,23 @@ class NewsResource extends Resource
 
     public static function getEloquentQuery(): Builder
     {
-        // Keep default; TrashedFilter handles soft deletes
-        return parent::getEloquentQuery();
+        return parent::getEloquentQuery()
+            ->withoutGlobalScopes([SoftDeletingScope::class]);
     }
 
     public static function getPages(): array
     {
         return [
-            'index'  => Pages\ListNews::route('/'),
-            'create' => Pages\CreateNews::route('/create'),
-            'edit'   => Pages\EditNews::route('/{record}/edit'),
-            'view'   => Pages\ViewNews::route('/{record}'),
+            'index'  => Pages\ListServices::route('/'),
+            'create' => Pages\CreateService::route('/create'),
+            'edit'   => Pages\EditService::route('/{record}/edit'),
         ];
     }
-
     public static function getRelations(): array
     {
         return [
             RelationManagers\MediaRelationManager::class,
         ];
     }
+
 }
