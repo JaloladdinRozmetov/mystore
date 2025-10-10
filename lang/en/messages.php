@@ -28,5 +28,9 @@ return [
         'delete' => 'Delete brand',
         'no_brands' => 'No brands available',
     ],
+    'services' => [
+        'title' => 'Services',
+        'our' => 'Our Services',
+    ]
 
 ];

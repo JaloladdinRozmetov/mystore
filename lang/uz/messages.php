@@ -28,4 +28,8 @@ return [
         'delete' => 'Brendni o‘chirish',
         'no_brands' => 'Brendlar mavjud emas',
     ],
+    'services' => [
+        'title' => 'Xizmatlar',
+        'our' => 'Bizning Xizmatlar',
+    ]
 ];

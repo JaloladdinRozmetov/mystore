@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Filament\Resources\ContactResource;
 use App\Filament\Resources\NewsResource;
+use App\Filament\Resources\ServiceResource;
 use App\Filament\Resources\UserResource;
 use App\Models\News;
 use App\Models\SiteSetting;
@@ -29,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
                 ContactResource::class,
                     NewsResource::class,
                     UserResource::class,
+                    ServiceResource::class,
 
                     ])
                 ->plugins([
