@@ -106,6 +106,7 @@ class News extends Model implements HasThumbnailImage, SpatieHasMedia
             ->width(300)
             ->height(300)
             ->sharpen(7)
+            ->performOnCollections('news_cover', 'news_gallery')
             ->nonQueued(); // switch to queued if you have queues
     }
 

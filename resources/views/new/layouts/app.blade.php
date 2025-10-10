@@ -60,47 +60,78 @@
                 <a href="{{ route('about',app()->getLocale()) }}" class="nav-item nav-link">About</a>
                 <a href="{{ route('brands',app()->getLocale()) }}" class="nav-item nav-link">{{__('messages.brands.title')}}</a>
                 <a href="{{ route('news',app()->getLocale()) }}" class="nav-item nav-link">{{__('messages.news')}}</a>
+                <a href="{{ route('services',app()->getLocale()) }}" class="nav-item nav-link">{{__('messages.services.title')}}</a>
                 <a href="{{ route('contact',app()->getLocale()) }}"
                    class="nav-item nav-link">{{__('messages.contact')}}</a>
             </div>
-            <div class="d-none d-xl-flex me-5">
+            @php
+                $segments = request()->segments();
+                array_shift($segments); // remove current locale
+                $currentPath = implode('/', $segments);
+            @endphp
+            @php
+                $segments = request()->segments();
+                array_shift($segments); // remove current locale
+                $currentPath = implode('/', $segments);
+            @endphp
+
+            <div class="d-none d-xl-flex me-5 ms-2 align-items-stretch">
+
+                <!-- Search -->
                 <div class="d-flex flex-column pe-3 border-end border-primary">
-                    <button class="btn btn-primary rounded-pill flex-shrink-0 py-2 px-4"
-                            data-bs-toggle="modal" data-bs-target="#searchModal">{{__('messages.search')}}<i
-                            class="fas fa-search"></i></button>
+                    <button class="btn btn-primary rounded-pill flex-shrink-0 py-2 px-4 h-100"
+                            data-bs-toggle="modal" data-bs-target="#searchModal">
+                        {{ __('messages.search') }} <i class="fas fa-search"></i>
+                    </button>
                 </div>
-            </div>
-            <div class="d-none d-xl-flex me-5">
-                <div class="d-flex flex-column">
 
+                <!-- Language Dropdown -->
+                <div class="d-flex flex-column px-3 border-end border-primary">
+                    <div class="dropdown h-100">
+                        <button class="btn btn-outline-primary dropdown-toggle rounded-pill h-100 px-4"
+                                type="button" id="langDropdown" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            {{ strtoupper(app()->getLocale()) }}
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="langDropdown">
+                            @foreach(['uz','ru','en'] as $locale)
+                                <li>
+                                    <a class="dropdown-item {{ app()->getLocale() === $locale ? 'active' : '' }}"
+                                       href="{{ url($locale . '/' . $currentPath) }}">
+                                        {{ strtoupper($locale) }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Auth/Guest -->
+                <div class="d-flex flex-column ps-3">
                     @auth
-                        <div class="nav-item dropdown">
-                        <span class="btn btn-outline-primary rounded-pill d-inline-flex flex-shrink-0 py-1 px-1">
-
-                            <a href="#" class="nav-link dropdown-toggle"
+                        <div class="nav-item dropdown h-100">
+                            <a href="#" class="btn btn-outline-primary dropdown-toggle rounded-pill h-100 px-4"
                                data-bs-toggle="dropdown">
-    {{ \Illuminate\Support\Str::limit(auth()->user()->name, 12) }}
-</a>
+                                {{ \Illuminate\Support\Str::limit(auth()->user()->name, 12) }}
+                            </a>
                             <div class="dropdown-menu m-0">
-
-                                <form method="POST" action="{{ route('logout',app()->getLocale()) }}">
+                                <form method="POST" action="{{ route('logout', app()->getLocale()) }}">
                                     @csrf
                                     <button type="submit" class="dropdown-item">{{ __('Logout') }}</button>
                                 </form>
                             </div>
-                        </span>
-
                         </div>
-
                     @endauth
+
                     @guest
                         <a href="{{ route('login', app()->getLocale()) }}"
-                           class="btn btn-primary rounded-pill d-inline-flex flex-shrink-0 py-2 px-4">
+                           class="btn btn-primary rounded-pill d-inline-flex flex-shrink-0 py-2 px-4 h-100">
                             {{ __('messages.login') }}
                         </a>
                     @endguest
                 </div>
             </div>
+
 
         </div>
     </nav>
