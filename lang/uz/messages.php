@@ -31,5 +31,7 @@ return [
     'services' => [
         'title' => 'Xizmatlar',
         'our' => 'Bizning Xizmatlar',
-    ]
+    ],
+    'about_us' => 'Biz haqimizda',
+
 ];

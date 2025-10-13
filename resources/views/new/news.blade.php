@@ -1,6 +1,6 @@
 @extends('new.layouts.app')
 
-@section('title', 'Acuas — Home')
+@section('title', 'Acuas — News')
 
 @section('content')
 

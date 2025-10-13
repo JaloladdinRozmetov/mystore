@@ -1,16 +1,15 @@
 @extends('new.layouts.app')
 
-@section('title', 'Acuas — Home')
+@section('title', 'Acuas — About')
 
 @section('content')
 
     <div class="container-fluid bg-breadcrumb">
         <div class="container text-center py-5" style="max-width: 900px;">
-            <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">About Us</h4>
+            <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{__('messages.about_us')}}</h4>
             <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-                <li class="breadcrumb-item"><a href="{{route('home',app()->getLocale())}}">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                <li class="breadcrumb-item active text-primary">About</li>
+                <li class="breadcrumb-item"><a href="{{route('home',app()->getLocale())}}">{{__('messages.home')}}</a></li>
+                <li class="breadcrumb-item active text-primary">{{__('messages.about_us')}}</li>
             </ol>
         </div>
     </div>
@@ -41,14 +40,15 @@
                 <div class="col-xl-6 wow fadeInLeft" data-wow-delay="0.2s">
                     <div class="about-img rounded h-100">
                         <img src="img/about.jpg" class="img-fluid rounded h-100 w-100" style="object-fit: cover;" alt="">
-                        <div class="about-exp"><span>20 Years Experiance</span></div>
+                        <div class="about-exp"><span>{{$about_us['experiance_'.app()->getLocale()]}}</span></div>
                     </div>
                 </div>
                 <div class="col-xl-6 wow fadeInRight" data-wow-delay="0.2s">
                     <div class="about-item">
-                        <h4 class="text-primary text-uppercase">About Us</h4>
-                        <h1 class="display-3 mb-3">We Deliver The Quality Water.</h1>
-                        <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum quidem quas totam nostrum! Maxime rerum voluptatem sed, facilis unde a aperiam nulla voluptatibus excepturi ipsam iusto consequuntur
+                        <h4 class="text-primary text-uppercase">{{__('messages.about_us')}}</h4>
+                        <h1 class="display-3 mb-3">{{$about_us['title_'.app()->getLocale()]}}</h1>
+                        <p class="mb-4">
+                            {{$about_us['excerpt_'.app()->getLocale()]}}
                         </p>
                         <div class="bg-light rounded p-4 mb-4">
                             <div class="row">
