@@ -31,6 +31,7 @@ return [
     'services' => [
         'title' => 'Services',
         'our' => 'Our Services',
-    ]
+    ],
+    'about_us' => 'About Us',
 
 ];

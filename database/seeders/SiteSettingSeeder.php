@@ -29,6 +29,22 @@ Olmazor tumani Yangi Olmazor ko’chasi 51
                         'footer_text'    => '© ' . date('Y') . ' IDEALMETER. All rights reserved.',
                 ]
             );
+
+
+            SiteSetting::set('about',
+                [
+                    'title_uz'     => 'Biz Hisoblagich sotamiz',
+                    'title_ru'  => 'Мы продоем счётчик',
+                    'title_en'  => 'We sold counters',
+                    'excerpt_uz'  => 'Biz haqimizda batafsil ma\'lumot',
+                    'excerpt_ru'  => 'Детално про нас',
+                    'excerpt_en'  => 'In detail About us',
+                    'experiance_uz' => '5 Yillik Tajribaga Egamiz',
+                    'experiance_ru' => '5 Лет Опыта',
+                    'experiance_en' => 'We Have 5 Years of Experience'
+                ]
+            );
+
         }catch (Exception $exception){
             var_dump($exception->getMessage());
         }
