@@ -2,7 +2,7 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
-    <title>@yield('title', 'Acuas - Drinking Water Website Template')</title>
+    <title>@yield('title', 'IDEALMETER')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content="" name="keywords">
@@ -57,10 +57,10 @@
             <div class="navbar-nav ms-auto py-0">
                 <a href="{{ route('home',app()->getLocale()) }}"
                    class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
-                <a href="{{ route('about',app()->getLocale()) }}" class="nav-item nav-link">About</a>
                 <a href="{{ route('brands',app()->getLocale()) }}" class="nav-item nav-link">{{__('messages.brands.title')}}</a>
                 <a href="{{ route('news',app()->getLocale()) }}" class="nav-item nav-link">{{__('messages.news')}}</a>
                 <a href="{{ route('services',app()->getLocale()) }}" class="nav-item nav-link">{{__('messages.services.title')}}</a>
+                <a href="{{ route('about',app()->getLocale()) }}" class="nav-item nav-link">{{__('messages.about_us')}}</a>
                 <a href="{{ route('contact',app()->getLocale()) }}"
                    class="nav-item nav-link">{{__('messages.contact')}}</a>
             </div>
