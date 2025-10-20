@@ -31,4 +31,18 @@ class ProductService
     {
         return $this->productRepository->getProductsIndex();
     }
+
+    /**
+     * @param int $product_type
+     * @return \Illuminate\Pagination\LengthAwarePaginator
+     */
+    public function getByCategory(int $product_type)
+    {
+        return $this->productRepository->getProductsByType($product_type);
+    }
+
+    public function getProductById(int $id)
+    {
+        return $this->productRepository->getProductById($id);
+    }
 }

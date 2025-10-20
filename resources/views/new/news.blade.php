@@ -1,6 +1,6 @@
 @extends('new.layouts.app')
 
-@section('title', 'Acuas — News')
+@section('title', 'IDEALMETER — News')
 
 @section('content')
 

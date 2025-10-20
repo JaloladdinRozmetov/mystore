@@ -17,6 +17,7 @@ use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
@@ -129,6 +130,12 @@ class ServiceResource extends Resource
                 TextColumn::make('slug')
                     ->limit(30)
                     ->toggleable(isToggledHiddenByDefault: true),
+                SpatieMediaLibraryImageColumn::make('thumbnail')
+                    ->collection('service_cover')
+                    ->conversion('small')
+                    ->limit(1)
+                    ->square()
+                    ->label(''),
             ])
             ->filters([
                 SelectFilter::make('status')

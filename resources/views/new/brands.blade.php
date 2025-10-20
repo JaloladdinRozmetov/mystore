@@ -1,6 +1,6 @@
 @extends('new.layouts.app')
 
-@section('title', 'Acuas — Brands')
+@section('title', 'IDEALMETER — Brands')
 
 @section('content')
 
@@ -52,10 +52,10 @@
                     <div class=" col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
                         <div class="feature-item p-4">
                             <div class="mb-3">
-                                <img src="{{$brand->getFirstMediaUrl('images')}}" alt="{{$brand->name}}" class="img-fluid rounded-circle"
+                                <img src="{{$brand->getFirstMediaUrl('brand_cover','thumb')}}" alt="{{$brand->name}}" class="img-fluid rounded-circle"
                                      style="width: 200px; height: 150px; object-fit: contain;">
                             </div>
-                            <a href="#" class="h4 mb-3">{{$brand->name}}</a>
+                            <a href="#" class="h4 mb-3">{{$brand->nameForLocale()}}</a>
                         </div>
                     </div>
                 @endforeach

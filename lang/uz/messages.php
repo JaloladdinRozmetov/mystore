@@ -33,5 +33,17 @@ return [
         'our' => 'Bizning Xizmatlar',
     ],
     'about_us' => 'Biz haqimizda',
+    'products' => [
+        'title' => 'Mahsulotlarimiz',
+        'all' => 'Barcha Mahsulotlar',
+        'subtitle' => 'Eng so‘nggi va mashhur mahsulotlarimizni ko‘rib chiqing.',
+        'search_placeholder' => 'Mahsulotlarni qidirish...',
+        'category' => 'Kategoriya',
+        'price' => 'Narx',
+        'add_to_cart' => 'Savatchaga qo‘shish',
+        'view_details' => 'Batafsil ko‘rish',
+        'no_products' => 'Mahsulot topilmadi.',
+        'filters' => 'Filtrlar',
+    ]
 
 ];

@@ -34,4 +34,17 @@ return [
     ],
     'about_us' => 'About Us',
 
+    'products' => [
+        'title' => 'Our Products',
+        'all' => 'All Products',
+        'subtitle' => 'Explore our latest and most popular products.',
+        'search_placeholder' => 'Search products...',
+        'category' => 'Category',
+        'price' => 'Price',
+        'add_to_cart' => 'Add to Cart',
+        'view_details' => 'View Details',
+        'no_products' => 'No products found.',
+        'filters' => 'Filters',
+    ],
+
 ];

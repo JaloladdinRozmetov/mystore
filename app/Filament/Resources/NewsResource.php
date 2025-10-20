@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\NewsResource\Pages;
 use App\Models\News;
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
@@ -12,7 +11,6 @@ use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
