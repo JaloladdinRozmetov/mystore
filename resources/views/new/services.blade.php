@@ -1,6 +1,6 @@
 @extends('new.layouts.app')
 
-@section('title', 'Acuas — Services')
+@section('title', 'IDEALMETER — Services')
 
 @section('content')
 
@@ -61,7 +61,7 @@
                                         </div>
                                         <div class="ps-4">
 
-                                                <img src="{{$service->getFirstMediaUrl('images')}}" alt="{{$service->title}}" class="img-fluid rounded-circle"
+                                                <img src="{{$service->getFirstMediaUrl('service_cover','thumb')}}" alt="{{$service->title}}" class="img-fluid rounded-circle"
                                                      style="width: 200px; height: 150px; object-fit: contain;">
                                         </div>
                                     </div>

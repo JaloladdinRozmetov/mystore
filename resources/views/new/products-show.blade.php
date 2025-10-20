@@ -12,10 +12,10 @@
         <!-- Header Start -->
         <div class="container-fluid bg-breadcrumb">
             <div class="container text-center py-5" style="max-width: 900px;">
-                <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{__('messages.our_news_blog')}}</h4>
+                <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{__('messages.products.title')}}</h4>
                 <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
                     <li class="breadcrumb-item"><a href="{{route('home',app()->getLocale())}}">{{__('messages.home')}}</a></li>
-                    <li class="breadcrumb-item active text-primary">{{__('messages.news_blog')}}</li>
+                    <li class="breadcrumb-item active text-primary">{{$product->productType->name}}</li>
                 </ol>
             </div>
         </div>
@@ -47,14 +47,14 @@
             <div class="row">
                 <div class="col-xl-6 wow fadeInLeft" data-wow-delay="0.2s">
                     <div class="about-img rounded h-100" style="max-height: 70%">
-                        <img src="{{$item->getFirstMediaUrl('news_cover','thumb')}}" class="img-fluid rounded h-100 w-100" style="object-fit: cover;" alt="">
-                        <div class="about-exp"><span>{{$item->published_at}}</span></div>
+                        <img src="{{$product->media->first()?->getUrl('large')}}" class="img-fluid rounded h-100 w-100" style="object-fit: cover;" alt="">
+                        <div class="about-exp"><span>{{$product->published_at}}</span></div>
                     </div>
                 </div>
                 <div class="col-xl-6 wow fadeInRight" data-wow-delay="0.2s">
                     <div class="about-item">
-                        <h1 class="display-3 mb-3">{{$item->getTitleCurAttribute()}}</h1>
-                        <p class="mb-4">{{$item->getDescriptionCurAttribute()}}</p>
+                        <h1 class="display-3 mb-3">{{$product->translateAttribute('name')}}</h1>
+                        <p class="mb-4">{!!$product->translateAttribute('description',app()->getLocale())!!}</p>
                     </div>
                 </div>
             </div>

@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Filament\Resources\BrandResource;
 use App\Filament\Resources\ContactResource;
 use App\Filament\Resources\NewsResource;
+use App\Filament\Resources\PageResource;
 use App\Filament\Resources\ServiceResource;
 use App\Filament\Resources\SiteSettingResource;
 use App\Filament\Resources\UserResource;
@@ -15,6 +17,8 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Lunar\Admin\Support\Facades\LunarPanel;
 use Lunar\Base\ShippingModifiers;
+use Lunar\Facades\ModelManifest;
+use Lunar\Models\ProductType;
 use Lunar\Shipping\ShippingPlugin;
 
 class AppServiceProvider extends ServiceProvider
@@ -33,6 +37,8 @@ class AppServiceProvider extends ServiceProvider
                     UserResource::class,
                     ServiceResource::class,
                     SiteSettingResource::class,
+                    BrandResource::class,
+                    PageResource::class,
 
                     ])
                 ->plugins([
@@ -53,17 +59,22 @@ class AppServiceProvider extends ServiceProvider
             ShippingModifier::class
         );
 
-        \Lunar\Facades\ModelManifest::replace(
+        ModelManifest::replace(
             \Lunar\Models\Contracts\Product::class,
             \App\Models\Product::class,
-            // \App\Models\CustomProduct::class,
         );
         Paginator::useBootstrapFive();
 
         News::observe(NewsObserver::class);
         view()->composer('*', function ($view) {
             $siteSetting = SiteSetting::where('key', 'site')->first();
-            $view->with('siteSetting', $siteSetting);
+            $categories = ProductType::all();
+            $view->with(['siteSetting'=>$siteSetting,'categories'=>$categories]);
         });
+
+        ModelManifest::replace(
+            \Lunar\Models\Contracts\Brand::class,
+            \App\Models\Brand::class
+        );
     }
 }

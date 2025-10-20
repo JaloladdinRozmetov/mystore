@@ -4,7 +4,6 @@ services:
   mysql:
     container_name: demostore-mysql
     image: mysql:8.0
-    restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_USER: ${DB_USERNAME}
@@ -16,7 +15,6 @@ services:
   caddy:
     container_name: demostore-caddy
     image: caddy:latest
-    restart: unless-stopped
     ports:
         - "80:80"
         - "443:443"
@@ -32,7 +30,6 @@ services:
     container_name: demostore-php-fpm
     build:
       target: php-fpm
-    restart: unless-stopped
     environment:
       - ADMIN_FIRSTNAME=${ADMIN_FIRSTNAME}
       - ADMIN_LASTNAME=${ADMIN_LASTNAME}
@@ -47,7 +44,6 @@ services:
   meilisearch:
     container_name: demostore-meilisearch
     image: getmeili/meilisearch:latest
-    restart: unless-stopped
     environment:
         - MEILI_MASTER_KEY=${MEILISEARCH_KEY}
         - MEILI_LOG_LEVEL=ERROR
@@ -61,7 +57,6 @@ services:
   meilisearch-ui:
       container_name: demostore-meilisearch-ui
       image: riccoxie/meilisearch-ui:latest
-      restart: unless-stopped
       ports:
           - ${MEILISEARCH_UI_PORT}:24900
       depends_on:
@@ -70,7 +65,6 @@ services:
   redis:
     container_name: demostore-redis
     image: redis:latest
-    restart: unless-stopped
     ports:
         - "${REDIS_PORT}:${REDIS_PORT}"
 

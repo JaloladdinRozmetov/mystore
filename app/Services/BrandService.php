@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\Brand;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Lunar\Models\Brand;
 
 class BrandService
 {
