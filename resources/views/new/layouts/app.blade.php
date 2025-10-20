@@ -29,8 +29,6 @@
     <!-- Template Stylesheet -->
     <link href="{{ asset('acuas/css/style.css') }}" rel="stylesheet">
 
-    @stack('styles')
-    @stack('head')
 </head>
 <body>
 <!-- Spinner Start -->
@@ -58,6 +56,47 @@
                 <a href="{{ route('home',app()->getLocale()) }}"
                    class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
                 <a href="{{ route('brands',app()->getLocale()) }}" class="nav-item nav-link">{{__('messages.brands.title')}}</a>
+
+                @php
+                    // slug of current category if on /{locale}/products/{category-slug}
+                    $currentCategory = request()->segment(3) ?? null;
+                @endphp
+
+                <div class="d-flex flex-column">
+                    <div class="dropdown h-100">
+                        <a class="nav-link dropdown-toggle" href="{{route('products',['locale' => app()->getLocale()])}}"
+                                type="button" id="productsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ __('messages.products.title') ?? __('messages.products.title') }}
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="productsDropdown">
+                            @if(isset($categories) && $categories->count())
+                                @foreach($categories as $category)
+                                    <li>
+                                        <a class="dropdown-item {{ $currentCategory === $category->id ? 'active' : '' }}"
+                                           href="{{ route( 'products.category',['locale' => app()->getLocale(),'id' => $category->id]) }}">
+                                            {{ $category->name }}
+                                        </a>
+                                    </li>
+                                @endforeach
+
+                                <li><hr class="dropdown-divider"></li>
+                            @endif
+
+                            <li>
+                                <a class="dropdown-item {{ request()->routeIs('products') ? 'active' : '' }}"
+                                   href="{{ route('products', app()->getLocale()) }}">
+                                    {{ __('messages.products.all', [], app()->getLocale()) ?? 'All products' }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+
+{{--                <a href="{{ route('products',app()->getLocale()) }}" class="nav-item nav-link">{{__('messages.products.title')}}</a>--}}
+
                 <a href="{{ route('news',app()->getLocale()) }}" class="nav-item nav-link">{{__('messages.news')}}</a>
                 <a href="{{ route('services',app()->getLocale()) }}" class="nav-item nav-link">{{__('messages.services.title')}}</a>
                 <a href="{{ route('about',app()->getLocale()) }}" class="nav-item nav-link">{{__('messages.about_us')}}</a>
@@ -75,16 +114,13 @@
                 $currentPath = implode('/', $segments);
             @endphp
 
-            <div class="d-none d-xl-flex me-5 ms-2 align-items-stretch">
-
-                <!-- Search -->
-                <div class="d-flex flex-column pe-3 border-end border-primary">
-                    <button class="btn btn-primary rounded-pill flex-shrink-0 py-2 px-4 h-100"
-                            data-bs-toggle="modal" data-bs-target="#searchModal">
-                        {{ __('messages.search') }} <i class="fas fa-search"></i>
-                    </button>
-                </div>
-
+            <div class="d-flex flex-column pe-3 border-end border-primary">
+                <button class="nav-item nav-link btn btn-primary rounded-pill flex-shrink-0 py-2 px-4 h-100"
+                        data-bs-toggle="modal" data-bs-target="#searchModal">
+                    {{ __('messages.search') }} <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="d-flex d-xl-flex me-5 ms-2">
                 <!-- Language Dropdown -->
                 <div class="d-flex flex-column px-3 border-end border-primary">
                     <div class="dropdown h-100">

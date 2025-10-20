@@ -18,14 +18,10 @@ class News extends Model implements HasThumbnailImage, SpatieHasMedia
 
     protected $fillable = [
         'author_id',
-        // UZ (required in DB & form)
         'title_uz', 'excerpt_uz', 'description_uz',
-        // RU
         'title_ru', 'excerpt_ru', 'description_ru',
-        // EN
         'title_en', 'excerpt_en', 'description_en',
 
-        // generic
         'slug', 'status', 'published_at',
     ];
 

@@ -1,6 +1,6 @@
 @extends('new.layouts.app')
 
-@section('title', 'Acuas — About')
+@section('title', 'IDEALMETER — About')
 
 @section('content')
 
@@ -46,41 +46,10 @@
                 <div class="col-xl-6 wow fadeInRight" data-wow-delay="0.2s">
                     <div class="about-item">
                         <h4 class="text-primary text-uppercase">{{__('messages.about_us')}}</h4>
-                        <h1 class="display-3 mb-3">{{$about_us['title_'.app()->getLocale()]}}</h1>
+                        <h1 class="display-3 mb-3">{{$page->getTitleAttribute()}}</h1>
                         <p class="mb-4">
-                            {{$about_us['excerpt_'.app()->getLocale()]}}
+                            {{$page->getContentAttribute()}}
                         </p>
-                        <div class="bg-light rounded p-4 mb-4">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="d-flex">
-                                        <div class="pe-4">
-                                            <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;"><i class="fas fa-tint text-white fa-2x"></i></div>
-                                        </div>
-                                        <div class="">
-                                            <a href="#" class="h4 d-inline-block mb-3">Satisfied Customer</a>
-                                            <p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas provident maiores quisquam.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-light rounded p-4 mb-4">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="d-flex">
-                                        <div class="pe-4">
-                                            <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;"><i class="fas fa-faucet text-white fa-2x"></i></div>
-                                        </div>
-                                        <div class="">
-                                            <a href="#" class="h4 d-inline-block mb-3">Standard Product</a>
-                                            <p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas provident maiores quisquam.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#" class="btn btn-secondary rounded-pill py-3 px-5">Read More</a>
                     </div>
                 </div>
             </div>
@@ -88,107 +57,64 @@
     </div>
     <!-- About End -->
 
-    <!-- Fact Counter -->
-    <div class="container-fluid counter py-5">
-        <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="counter-item">
-                        <div class="counter-item-icon mx-auto">
-                            <i class="fas fa-thumbs-up fa-3x text-white"></i>
-                        </div>
-                        <h4 class="text-white my-4">Happy Clients</h4>
-                        <div class="counter-counting">
-                            <span class="text-white fs-2 fw-bold" data-toggle="counter-up">456</span>
-                            <span class="h1 fw-bold text-white">+</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="counter-item">
-                        <div class="counter-item-icon mx-auto">
-                            <i class="fas fa-truck fa-3x text-white"></i>
-                        </div>
-                        <h4 class="text-white my-4">Transport</h4>
-                        <div class="counter-counting">
-                            <span class="text-white fs-2 fw-bold" data-toggle="counter-up">513</span>
-                            <span class="h1 fw-bold text-white">+</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.6s">
-                    <div class="counter-item">
-                        <div class="counter-item-icon mx-auto">
-                            <i class="fas fa-users fa-3x text-white"></i>
-                        </div>
-                        <h4 class="text-white my-4">Employees</h4>
-                        <div class="counter-counting">
-                            <span class="text-white fs-2 fw-bold" data-toggle="counter-up">53</span>
-                            <span class="h1 fw-bold text-white">+</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.8s">
-                    <div class="counter-item">
-                        <div class="counter-item-icon mx-auto">
-                            <i class="fas fa-heart fa-3x text-white"></i>
-                        </div>
-                        <h4 class="text-white my-4">Years Experiance</h4>
-                        <div class="counter-counting">
-                            <span class="text-white fs-2 fw-bold" data-toggle="counter-up">17</span>
-                            <span class="h1 fw-bold text-white">+</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Fact Counter -->
-
-    <!-- feature Start -->
-    <div class="container-fluid feature bg-light py-5">
+    <!-- Service Start -->
+    <div class="container-fluid service bg-light overflow-hidden py-5">
         <div class="container py-5">
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-                <h4 class="text-uppercase text-primary">Our Feature</h4>
-                <h1 class="display-3 text-capitalize mb-3">A Trusted Name In Bottled Water Industry</h1>
+                <h4 class="text-uppercase text-primary">{{__('messages.services.our')}}</h4>
+                <h1 class="display-3 text-capitalize mb-3">{{__('messages.services.description')}}</h1>
             </div>
-            <div class="row g-4">
-                <div class=" col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="feature-item p-4">
-                        <div class="feature-icon mb-3"><i class="fas fa-hand-holding-water text-white fa-3x"></i></div>
-                        <a href="#" class="h4 mb-3">Quality Check</a>
-                        <p class="mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero repellat deleniti necessitatibus</p>
-                        <a href="#" class="btn text-secondary">Read More <i class="fa fa-angle-right"></i></a>
+            <div class="row gx-0 gy-4 align-items-center">
+                <div class="col-lg-6 col-xl-4 wow fadeInLeft" data-wow-delay="0.2s">
+                    @foreach($services->slice(0,3) as $service)
+                        <div class="service-item rounded p-4 mb-4">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-flex">
+                                        <div class="service-content text-end">
+                                            <a href="#" class="h4 d-inline-block mb-3">{{$service->getTitleAttribute()}}</a>
+                                            <p class="mb-0">{{$service->getExcerptAttribute()}}</p>
+                                        </div>
+                                        <div class="ps-4">
+
+                                            <img src="{{$service->getFirstMediaUrl('images')}}" alt="{{$service->title}}" class="img-fluid rounded-circle"
+                                                 style="width: 200px; height: 150px; object-fit: contain;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="bg-transparent">
+                        <!--                            <img src="img/water.png" class="img-fluid w-100" alt="">-->
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="feature-item p-4">
-                        <div class="feature-icon mb-3"><i class="fas fa-filter text-white fa-3x"></i></div>
-                        <a href="#" class="h4 mb-3">5 Steps Filtration</a>
-                        <p class="mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero repellat deleniti necessitatibus</p>
-                        <a href="#" class="btn text-secondary">Read More <i class="fa fa-angle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.6s">
-                    <div class="feature-item p-4">
-                        <div class="feature-icon mb-3"><i class="fas fa-recycle text-white fa-3x"></i></div>
-                        <a href="#" class="h4 mb-3">Composition</a>
-                        <p class="mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero repellat deleniti necessitatibus</p>
-                        <a href="#" class="btn text-secondary">Read More <i class="fa fa-angle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.8s">
-                    <div class="feature-item p-4">
-                        <div class="feature-icon mb-3"><i class="fas fa-microscope text-white fa-3x"></i></div>
-                        <a href="#" class="h4 mb-3">Lab Control</a>
-                        <p class="mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero repellat deleniti necessitatibus</p>
-                        <a href="#" class="btn text-secondary">Read More <i class="fa fa-angle-right"></i></a>
-                    </div>
+                <div class="col-lg-6 col-xl-4 wow fadeInRight" data-wow-delay="0.2s">
+                    @foreach($services->slice(3,3) as $service)
+                        <div class="service-item rounded p-4 mb-4">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-flex">
+                                        <div class="service-content text-end">
+                                            <a href="#" class="h4 d-inline-block mb-3">{{$service->getTitleAttribute()}}</a>
+                                            <p class="mb-0">{{$service->getExcerptAttribute()}}</p>
+                                        </div>
+                                        <div class="ps-4">
+                                            <img src="{{$service->getFirstMediaUrl('service_cover','thumb')}}" alt="{{$service->title}}" class="img-fluid rounded-circle"
+                                                 style="width: 200px; height: 150px; object-fit: contain;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
-    <!-- feature End -->
+    <!-- Service End -->
 
 
 @endsection
