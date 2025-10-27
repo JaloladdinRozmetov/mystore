@@ -54,7 +54,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
                 <a href="{{ route('home',app()->getLocale()) }}"
-                   class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
+                   class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">{{__('messages.home')}}</a>
                 <a href="{{ route('brands',app()->getLocale()) }}" class="nav-item nav-link">{{__('messages.brands.title')}}</a>
 
                 @php
@@ -75,7 +75,7 @@
                                     <li>
                                         <a class="dropdown-item {{ $currentCategory === $category->id ? 'active' : '' }}"
                                            href="{{ route( 'products.category',['locale' => app()->getLocale(),'id' => $category->id]) }}">
-                                            {{ $category->name }}
+                                            {{ $category->nameForLocale() }}
                                         </a>
                                     </li>
                                 @endforeach

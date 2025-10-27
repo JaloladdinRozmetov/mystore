@@ -26,11 +26,11 @@ if [ "$1" = 'php-fpm' ] || [ "$1" = 'artisan' ]; then
         echo "$BLUE Starting installation..."
         composer install
         php artisan migrate
-        php artisan lunar:create-admin --firstname=${ADMIN_FIRSTNAME} --lastname=${ADMIN_LASTNAME} --email=${ADMIN_EMAIL} --password=${ADMIN_PASSWORD}
-        php artisan lunar:install -n
+        php artisan lunarphp:create-admin --firstname=${ADMIN_FIRSTNAME} --lastname=${ADMIN_LASTNAME} --email=${ADMIN_EMAIL} --password=${ADMIN_PASSWORD}
+        php artisan lunarphp:install -n
         php artisan db:seed
         php artisan storage:link
-        php artisan lunar:search:index
+        php artisan lunarphp:search:index
 	fi
 
     echo -e "$CYAN Would you like to show some love by giving us a star ⭐ on GitHub?"

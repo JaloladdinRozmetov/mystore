@@ -10,7 +10,6 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -22,6 +21,13 @@ class BrandResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-collection';
     protected static ?string $navigationLabel = 'Brands';
     protected static ?string $navigationGroup = 'Catalog';
+
+
+
+    public static function getPluralLabel(): string
+    {
+        return (string) __('Brandlar');
+    }
 
     public static function form(Form $form): Form
     {

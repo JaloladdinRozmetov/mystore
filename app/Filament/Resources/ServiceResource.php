@@ -130,7 +130,7 @@ class ServiceResource extends Resource
                 TextColumn::make('slug')
                     ->limit(30)
                     ->toggleable(isToggledHiddenByDefault: true),
-                SpatieMediaLibraryImageColumn::make('thumbnail')
+                SpatieMediaLibraryImageColumn::make('thumb')
                     ->collection('service_cover')
                     ->conversion('small')
                     ->limit(1)

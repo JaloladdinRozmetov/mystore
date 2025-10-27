@@ -22,6 +22,7 @@ return [
         'title' => 'Brands',
         'our'   => 'Our brands',
         'name'  => 'Brand name',
+        'subtitle' => 'The best brands which we worked together.',
         'list'  => 'Brand list',
         'create' => 'Add new brand',
         'edit'   => 'Edit brand',

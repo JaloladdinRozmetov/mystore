@@ -80,7 +80,7 @@ class News extends Model implements HasThumbnailImage, SpatieHasMedia
     */
     public function images(): MorphMany
     {
-        return $this->media()->where('collection_name', config('lunar.media.collection'));
+        return $this->media()->where('collection_name', config('lunarphp.media.collection'));
     }
 
     public function getThumbnailImage(): string
