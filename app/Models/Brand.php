@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Lunar\Base\HasThumbnailImage;
-use Lunar\Base\Traits\HasMedia;
-use Lunar\Models\Brand as LunarBrand;
 use Spatie\MediaLibrary\HasMedia as SpatieHasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -22,6 +20,11 @@ class Brand extends Model implements HasThumbnailImage,SpatieHasMedia
     ];
     protected $table = 'lunar_brands';
 
+
+    public static function morphName(): string
+    {
+        return (new static)->getMorphClass();
+    }
     /**
      * Get brand name based on given or current locale.
      */
@@ -56,7 +59,7 @@ class Brand extends Model implements HasThumbnailImage,SpatieHasMedia
 
     public function images(): MorphMany
     {
-        return $this->media()->where('collection_name', config('lunar.media.collection'));
+        return $this->media()->where('collection_name', config('lunarphp.media.collection'));
     }
 
     public function getThumbnailImage(): string

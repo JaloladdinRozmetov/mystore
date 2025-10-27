@@ -58,22 +58,22 @@
     <div class="container-fluid product py-5">
         <div class="container py-5">
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-                <h4 class="text-uppercase text-primary">Our Products</h4>
-                <h1 class="display-3 text-capitalize mb-3">We Deliver Best Quality Bottle Packs.</h1>
+                <h1 class="text-uppercase text-primary">{{__('messages.products.title')}}</h1>
+                <h5 class="display-4 mb-3">{{__('messages.products.subtitle')}}</h5>
             </div>
             <div class="row g-4 justify-content-center">
                 @foreach($products as $product)
                     <div class="col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="product-item">
-                        <img src="{{ $product->media->first()?->getUrl('large') }}" class="img-fluid w-100 rounded-top"  alt="Image">
-                        <div class="product-content bg-light text-center rounded-bottom p-4">
-                            <p>2L 1 Bottle</p>
-                            <a href="#" class="h4 d-inline-block mb-3">{{ $product->translateAttribute('name') }}</a>
-                            <p class="fs-4 text-primary mb-3">{{ $product->prices->first()->price->formatted }}</p>
-                            <a href="#" class="btn btn-secondary rounded-pill py-2 px-4">Read More</a>
+                        <div class="product-item">
+                            <img src="{{ $product->getFirstMediaUrl('images','large') }}" class="img-fluid w-100 rounded-top"  alt="Image">
+                            <div class="product-content bg-light text-center rounded-bottom p-4">
+                                <p>{{$product->brand->name ?? ''}}</p>
+                                <a href="{{route('product.show',['locale' => app()->getLocale(),'id' => $product->id])}}" class="h4 d-inline-block mb-3">{{ $product->translateAttribute('name') }}</a>
+                                <p class="fs-4 text-primary mb-3">{{ $product->prices->first()->price->formatted }}</p>
+                                <a href="{{route('product.show',['locale' => app()->getLocale(),'id' => $product->id])}}" class="btn btn-secondary rounded-pill py-2 px-4">{{__('messages.products.view_details')}}</a>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
 
             </div>
@@ -81,97 +81,47 @@
     </div>
     <!-- Products End -->
 
-    <!-- feature Start -->
+    <!-- Brands Start -->
     <div class="container-fluid feature bg-light py-5">
         <div class="container py-5">
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-                <h4 class="text-uppercase text-primary">Our Feature</h4>
-                <h1 class="display-3 text-capitalize mb-3">A Trusted Name In Bottled Water Industry</h1>
+                <h1 class="text-uppercase text-primary">{{__('messages.brands.our')}}</h1>
+                <h5 class="display-3 mb-3">{{__('messages.brands.subtitle')}}</h5>
             </div>
             <div class="row g-4">
-                <div class=" col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="feature-item p-4">
-                        <div class="feature-icon mb-3"><i class="fas fa-hand-holding-water text-white fa-3x"></i></div>
-                        <a href="#" class="h4 mb-3">Quality Check</a>
-                        <p class="mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero repellat deleniti necessitatibus</p>
-                        <a href="#" class="btn text-secondary">Read More <i class="fa fa-angle-right"></i></a>
+                @foreach($brands as $brand)
+                    <div class=" col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="feature-item p-4">
+                            <div class="mb-3">
+                                <img src="{{$brand->getFirstMediaUrl('brand_cover','thumb')}}" alt="{{$brand->name}}" class="img-fluid rounded-circle"
+                                     style="width: 200px; height: 150px; object-fit: contain;">
+                            </div>
+                            <a href="#" class="h4 mb-3">{{$brand->nameForLocale()}}</a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="feature-item p-4">
-                        <div class="feature-icon mb-3"><i class="fas fa-filter text-white fa-3x"></i></div>
-                        <a href="#" class="h4 mb-3">5 Steps Filtration</a>
-                        <p class="mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero repellat deleniti necessitatibus</p>
-                        <a href="#" class="btn text-secondary">Read More <i class="fa fa-angle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.6s">
-                    <div class="feature-item p-4">
-                        <div class="feature-icon mb-3"><i class="fas fa-recycle text-white fa-3x"></i></div>
-                        <a href="#" class="h4 mb-3">Composition</a>
-                        <p class="mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero repellat deleniti necessitatibus</p>
-                        <a href="#" class="btn text-secondary">Read More <i class="fa fa-angle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.8s">
-                    <div class="feature-item p-4">
-                        <div class="feature-icon mb-3"><i class="fas fa-microscope text-white fa-3x"></i></div>
-                        <a href="#" class="h4 mb-3">Lab Control</a>
-                        <p class="mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero repellat deleniti necessitatibus</p>
-                        <a href="#" class="btn text-secondary">Read More <i class="fa fa-angle-right"></i></a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
-    <!-- feature End -->
+    <!-- Brands End -->
 
     <!-- About Start -->
-    <div class="container-fluid about overflow-hidden py-5">
+    <div class="container-fluid about py-5">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-xl-6 wow fadeInLeft" data-wow-delay="0.2s">
                     <div class="about-img rounded h-100">
-                        <img src="{{ asset('acuas/img/about.jpg') }}" class="img-fluid rounded h-100 w-100" style="object-fit: cover;" alt="">
-                        <div class="about-exp"><span>20 Years Experiance</span></div>
+                        <img src="{{$page->getFirstMediaUrl('pages_cover')}}" class="img-fluid rounded h-100 w-100" style="object-fit: cover;" alt="">
+                        <div class="about-exp"><span>{{$about_us['experiance_'.app()->getLocale()]}}</span></div>
                     </div>
                 </div>
                 <div class="col-xl-6 wow fadeInRight" data-wow-delay="0.2s">
                     <div class="about-item">
-                        <h4 class="text-primary text-uppercase">About Us</h4>
-                        <h1 class="display-3 mb-3">We Deliver The Quality Water.</h1>
-                        <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                        <div class="bg-light rounded p-4 mb-4">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="d-flex">
-                                        <div class="pe-4">
-                                            <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;"><i class="fas fa-tint text-white fa-2x"></i></div>
-                                        </div>
-                                        <div class="">
-                                            <a href="#" class="h4 d-inline-block mb-3">Satisfied Customer</a>
-                                            <p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas provident maiores quisquam.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-light rounded p-4 mb-4">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="d-flex">
-                                        <div class="pe-4">
-                                            <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;"><i class="fas fa-faucet text-white fa-2x"></i></div>
-                                        </div>
-                                        <div class="">
-                                            <a href="#" class="h4 d-inline-block mb-3">Standard Product</a>
-                                            <p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas provident maiores quisquam.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#" class="btn btn-secondary rounded-pill py-3 px-5">Read More</a>
+                        <h4 class="text-primary text-uppercase">{{__('messages.about_us')}}</h4>
+                        <h1 class="display-3 mb-3">{{$page->getTitleAttribute()}}</h1>
+                        <p class="mb-4">
+                            {!! $page->getContentAttribute()!!}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -179,194 +129,86 @@
     </div>
     <!-- About End -->
 
-    <!-- Fact Counter -->
-    <div class="container-fluid counter py-5">
-        <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="counter-item">
-                        <div class="counter-item-icon mx-auto">
-                            <i class="fas fa-thumbs-up fa-3x text-white"></i>
-                        </div>
-                        <h4 class="text-white my-4">Happy Clients</h4>
-                        <div class="counter-counting">
-                            <span class="text-white fs-2 fw-bold" data-toggle="counter-up">456</span>
-                            <span class="h1 fw-bold text-white">+</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="counter-item">
-                        <div class="counter-item-icon mx-auto">
-                            <i class="fas fa-truck fa-3x text-white"></i>
-                        </div>
-                        <h4 class="text-white my-4">Transport</h4>
-                        <div class="counter-counting">
-                            <span class="text-white fs-2 fw-bold" data-toggle="counter-up">513</span>
-                            <span class="h1 fw-bold text-white">+</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.6s">
-                    <div class="counter-item">
-                        <div class="counter-item-icon mx-auto">
-                            <i class="fas fa-users fa-3x text-white"></i>
-                        </div>
-                        <h4 class="text-white my-4">Employees</h4>
-                        <div class="counter-counting">
-                            <span class="text-white fs-2 fw-bold" data-toggle="counter-up">53</span>
-                            <span class="h1 fw-bold text-white">+</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.8s">
-                    <div class="counter-item">
-                        <div class="counter-item-icon mx-auto">
-                            <i class="fas fa-heart fa-3x text-white"></i>
-                        </div>
-                        <h4 class="text-white my-4">Years Experiance</h4>
-                        <div class="counter-counting">
-                            <span class="text-white fs-2 fw-bold" data-toggle="counter-up">17</span>
-                            <span class="h1 fw-bold text-white">+</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Fact Counter End -->
 
     <!-- Service Start -->
     <div class="container-fluid service bg-light overflow-hidden py-5">
         <div class="container py-5">
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-                <h4 class="text-uppercase text-primary">Our Service</h4>
-                <h1 class="display-3 text-capitalize mb-3">Protect Your Family with Best Water</h1>
+                <h4 class="text-uppercase text-primary">{{__('messages.services.our')}}</h4>
+                <h1 class="display-3 text-capitalize mb-3">{{__('messages.services.description')}}</h1>
             </div>
             <div class="row gx-0 gy-4 align-items-center">
                 <div class="col-lg-6 col-xl-4 wow fadeInLeft" data-wow-delay="0.2s">
-                    <div class="service-item rounded p-4 mb-4">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="d-flex">
-                                    <div class="service-content text-end">
-                                        <a href="#" class="h4 d-inline-block mb-3">Residential Waters</a>
-                                        <p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas provident maiores quisquam.</p>
-                                    </div>
-                                    <div class="ps-4">
-                                        <div class="service-btn"><i class="fas fa-hand-holding-water text-white fa-2x"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="service-item rounded p-4 mb-4">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="d-flex">
-                                    <div class="service-content text-end">
-                                        <a href="#" class="h4 d-inline-block mb-3">Commercial Waters</a>
-                                        <p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas provident maiores quisquam.</p>
-                                    </div>
-                                    <div class="ps-4">
-                                        <div class="service-btn"><i class="fas fa-dumpster-fire text-white fa-2x"></i></div>
+                    @foreach($services->slice(0,3) as $service)
+                        <div class="service-item rounded p-4 mb-4">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-flex">
+                                        <div class="service-content text-end">
+                                            <a href="#" class="h4 d-inline-block mb-3">{{$service->getTitleAttribute()}}</a>
+                                            <p class="mb-0">{{$service->getExcerptAttribute()}}</p>
+                                        </div>
+                                        <div class="ps-4">
+
+                                            <img src="{{$service->getFirstMediaUrl('service_cover','thumb')}}" alt="{{$service->title}}" class="img-fluid rounded-circle"
+                                                 style="width: 200px; height: 150px; object-fit: contain;">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="service-item rounded p-4 mb-0">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="d-flex">
-                                    <div class="service-content text-end">
-                                        <a href="#" class="h4 d-inline-block mb-3">Filtration Plants</a>
-                                        <p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas provident maiores quisquam.</p>
-                                    </div>
-                                    <div class="ps-4">
-                                        <div class="service-btn"><i class="fas fa-filter text-white fa-2x"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="bg-transparent">
-                        <img src="{{ asset('acuas/img/water.png') }}" class="img-fluid w-100" alt="">
+                        <!--                            <img src="img/water.png" class="img-fluid w-100" alt="">-->
                     </div>
                 </div>
                 <div class="col-lg-6 col-xl-4 wow fadeInRight" data-wow-delay="0.2s">
-                    <div class="service-item rounded p-4 mb-4">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="d-flex">
-                                    <div class="pe-4">
-                                        <div class="service-btn"><i class="fas fa-assistive-listening-systems text-white fa-2x"></i></div>
-                                    </div>
-                                    <div class="service-content">
-                                        <a href="#" class="h4 d-inline-block mb-3">Water Softening</a>
-                                        <p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas provident maiores quisquam.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="service-item rounded p-4 mb-4">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="d-flex">
-                                    <div class="pe-4">
-                                        <div class="service-btn"><i class="fas fa-recycle text-white fa-2x"></i></div>
-                                    </div>
-                                    <div class="service-content">
-                                        <a href="#" class="h4 d-inline-block mb-3">Market Research</a>
-                                        <p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas provident maiores quisquam.</p>
+                    @foreach($services->slice(3,3) as $service)
+                        <div class="service-item rounded p-4 mb-4">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-flex">
+                                        <div class="service-content text-end">
+                                            <a href="#" class="h4 d-inline-block mb-3">{{$service->getTitleAttribute()}}</a>
+                                            <p class="mb-0">{{$service->getExcerptAttribute()}}</p>
+                                        </div>
+                                        <div class="ps-4">
+                                            <img src="{{$service->getFirstMediaUrl('service_cover','thumb')}}" alt="{{$service->title}}" class="img-fluid rounded-circle"
+                                                 style="width: 200px; height: 150px; object-fit: contain;">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="service-item rounded p-4 mb-0">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="d-flex">
-                                    <div class="pe-4">
-                                        <div class="service-btn"><i class="fas fa-project-diagram text-white fa-2x"></i></div>
-                                    </div>
-                                    <div class="service-content">
-                                        <a href="#" class="h4 d-inline-block mb-3">Project Planning</a>
-                                        <p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas provident maiores quisquam.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
+    <!-- Service End -->
 
 
     <!-- Blog Start -->
     <div class="container-fluid blog pb-5">
         <div class="container pb-5">
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-                <h4 class="text-uppercase text-primary">Our Blog</h4>
-                <h1 class="display-3 text-capitalize mb-3">Latest Blog & News</h1>
+                <h4 class="text-uppercase text-primary">{{__('messages.news')}}</h4>
+                <h1 class="display-3 text-capitalize mb-3">{{__('messages.news_blog')}}</h1>
             </div>
             <div class="row g-4 justify-content-center">
-                @foreach ([1,2,3] as $i)
-                    <div class="col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="{{ $i * 0.2 }}s">
+                @foreach ($latest_news as $n)
+                    <div class="col-lg-6 col-xl-4 wow fadeInUp"  data-wow-delay="{{ 1 * 0.2 }}s">
                         <div class="blog-item">
                             <div class="blog-img">
-                                <img src="{{ asset("img/blog-$i.jpg") }}" class="img-fluid rounded-top w-100" alt="">
-                                <div class="blog-date px-4 py-2"><i class="fa fa-calendar-alt me-1"></i> Jan 12 2025</div>
+                                <img src="{{$n->getFirstMediaUrl('news_cover','thumb')}}" class="img-fluid rounded-top w-100" alt="">
+                                <div class="blog-date px-4 py-2"><i class="fa fa-calendar-alt me-1"></i>{{ $n->published_at?->format('d.m.Y') }}</div>
                             </div>
                             <div class="blog-content rounded-bottom p-4">
-                                <a href="#" class="h4 d-inline-block mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde</a>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, officiis?</p>
-                                <a href="#" class="fw-bold text-secondary">Read More <i class="fa fa-angle-right"></i></a>
+                                <a href="#" class="h4 d-inline-block mb-3">{{$n->getTitleCurAttribute()}}</a>
+                                <p>{{ Str::limit($n->getExcerptCurAttribute(), 140) }}</p>
+                                <a href="{{route('news.show',[ 'id' =>$n->id,'locale' => app()->getLocale()])}}" class="fw-bold text-secondary">{{__('messages.read_more')}} <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -384,65 +226,58 @@
                 <h1 class="display-3 text-capitalize mb-3">What is Really seo & How Can I Use It?</h1>
             </div>
             <div class="row g-4">
-                @foreach ([1,2,3,4] as $i)
-                    <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="{{ $i * 0.2 }}s">
+                @foreach ($our_team as $i)
+                    <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="{{ $loop->iteration * 0.2 }}s">
                         <div class="team-item p-4">
                             <div class="team-inner rounded">
                                 <div class="team-img">
-                                    <img src="{{ asset("img/team-$i.jpg") }}" class="img-fluid rounded-top w-100" alt="Image">
+                                    <img src="{{ $i->getFirstMediaUrl('team_cover','thumb') }}"
+                                         class="img-fluid rounded-top w-100"
+                                         alt="{{ $i->name }}">
+
                                     <div class="team-share">
-                                        <a class="btn btn-secondary btn-md-square rounded-pill text-white mx-1" href=""><i class="fas fa-share-alt"></i></a>
+                                        <a class="btn btn-secondary btn-md-square rounded-pill text-white mx-1" href="#">
+                                            <i class="fas fa-share-alt"></i>
+                                        </a>
                                     </div>
-                                    <div class="team-icon rounded-pill py-2 px-2">
-                                        <a class="btn btn-secondary btn-sm-square rounded-pill mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                        <a class="btn btn-secondary btn-sm-square rounded-pill me-1" href=""><i class="fab fa-twitter"></i></a>
-                                        <a class="btn btn-secondary btn-sm-square rounded-pill me-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                                        <a class="btn btn-secondary btn-sm-square rounded-pill me-1" href=""><i class="fab fa-instagram"></i></a>
-                                    </div>
+
+                                    {{-- Dynamic social links --}}
+                                    @if(!empty($i->social_links))
+                                        <div class="team-icon rounded-pill py-2 px-2">
+                                            @foreach ($i->social_links as $link)
+                                                @php
+                                                    $platform = strtolower($link['platform']);
+                                                    $url = $link['url'];
+                                                    $icon = match($platform) {
+                                                        'facebook' => 'fab fa-facebook-f',
+                                                        'twitter' => 'fab fa-twitter',
+                                                        'linkedin' => 'fab fa-linkedin-in',
+                                                        'instagram' => 'fab fa-instagram',
+                                                        'youtube' => 'fab fa-youtube',
+                                                        default => 'fas fa-link',
+                                                    };
+                                                @endphp
+                                                <a class="btn btn-secondary btn-sm-square rounded-pill mx-1"
+                                                   href="{{ $url }}" target="_blank" title="{{ ucfirst($platform) }}">
+                                                    <i class="{{ $icon }}"></i>
+                                                </a>
+                                            @endforeach
+                                        </div>
+                                    @endif
                                 </div>
+
                                 <div class="bg-light rounded-bottom text-center py-4">
-                                    <h4 class="mb-3">Hard Branots</h4>
-                                    <p class="mb-0">CEO & Founder</p>
+                                    <h4 class="mb-3">{{ $i->name }}</h4>
+                                    <p class="mb-0">{{ $i->job_title }}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 @endforeach
+
             </div>
         </div>
     </div>
     <!-- Team End -->
-
-    <!-- Testimonial Start -->
-    <div class="container-fluid testimonial pb-5">
-        <div class="container pb-5">
-            <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-                <h4 class="text-uppercase text-primary">Testimonials</h4>
-                <h1 class="display-3 text-capitalize mb-3">Our clients reviews.</h1>
-            </div>
-            <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.3s">
-                @foreach ([1,2,3,3] as $i)
-                    <div class="testimonial-item text-center p-4">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt pariatur officiis quis molestias, sit iure sunt voluptatibus accusantium laboriosam dolore.</p>
-                        <div class="d-flex justify-content-center mb-4">
-                            <img src="{{ asset("img/testimonial-$i.jpg") }}" class="img-fluid border border-4 border-primary" style="width: 100px; height: 100px; border-radius: 50px;" alt="">
-                        </div>
-                        <div class="d-block">
-                            <h4 class="text-dark">Client Name</h4>
-                            <p class="m-0 pb-3">Profession</p>
-                            <div class="d-flex justify-content-center text-secondary">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-    <!-- Testimonial End -->
 
 @endsection

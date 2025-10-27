@@ -24,6 +24,7 @@ return [
         'name'  => 'Brend nomi',
         'list'  => 'Brendlar roʻyxati',
         'create' => 'Yangi brend qo‘shish',
+        'subtitle' => 'Biz birga ishlagan eng zo\'r brendlar',
         'edit'   => 'Brendni tahrirlash',
         'delete' => 'Brendni o‘chirish',
         'no_brands' => 'Brendlar mavjud emas',

@@ -12,7 +12,7 @@ Then set-up Lunar...
 lando composer install
 cp .env.lando.example .env
 lando artisan migrate
-lando artisan lunar:install
+lando artisan lunarphp:install
 lando artisan db:seed
 lando artisan storage:link
 ````
