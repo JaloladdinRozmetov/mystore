@@ -41,7 +41,7 @@
     </div>
     <!-- Modal Search End -->
 
-    <!-- News Detail start -->
+    <!-- Product Detail start -->
     <div class="container-fluid about overflow-hidden py-5">
         <div class="container py-5">
             <div class="row">
@@ -56,9 +56,12 @@
                         <h1 class="display-3 mb-3">{{$product->translateAttribute('name')}}</h1>
                         <p class="mb-4">{!!$product->translateAttribute('description',app()->getLocale())!!}</p>
                     </div>
+                        <h3 class="text-primary mt-3">
+                            {{ $product->prices->first()->price->formatted }}
+                        </h3>
                 </div>
             </div>
         </div>
     </div>
-    <!-- News Detail end -->
+    <!-- Product Detail end -->
 @endsection

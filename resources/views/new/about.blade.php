@@ -39,7 +39,7 @@
             <div class="row g-5">
                 <div class="col-xl-6 wow fadeInLeft" data-wow-delay="0.2s">
                     <div class="about-img rounded h-100">
-                        <img src="img/about.jpg" class="img-fluid rounded h-100 w-100" style="object-fit: cover;" alt="">
+                        <img src="{{$page->getFirstMediaUrl('pages_cover')}}" class="img-fluid rounded h-100 w-100" style="object-fit: cover;" alt="">
                         <div class="about-exp"><span>{{$about_us['experiance_'.app()->getLocale()]}}</span></div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                         <h4 class="text-primary text-uppercase">{{__('messages.about_us')}}</h4>
                         <h1 class="display-3 mb-3">{{$page->getTitleAttribute()}}</h1>
                         <p class="mb-4">
-                            {{$page->getContentAttribute()}}
+                            {!!  $page->getContentAttribute() !!}
                         </p>
                     </div>
                 </div>

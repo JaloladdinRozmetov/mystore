@@ -3,11 +3,15 @@
 namespace App\Providers;
 
 use App\Filament\Resources\BrandResource;
+use App\Filament\Resources\CollectionResource;
 use App\Filament\Resources\ContactResource;
 use App\Filament\Resources\NewsResource;
+use App\Filament\Resources\OurTeamResource;
 use App\Filament\Resources\PageResource;
+use App\Filament\Resources\ProductTypeResource;
 use App\Filament\Resources\ServiceResource;
 use App\Filament\Resources\SiteSettingResource;
+use App\Filament\Resources\TaxResource;
 use App\Filament\Resources\UserResource;
 use App\Models\News;
 use App\Models\SiteSetting;
@@ -15,6 +19,7 @@ use App\Modifiers\ShippingModifier;
 use App\Observers\NewsObserver;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use Lunar\Admin\Filament\Resources\TaxClassResource;
 use Lunar\Admin\Support\Facades\LunarPanel;
 use Lunar\Base\ShippingModifiers;
 use Lunar\Facades\ModelManifest;
@@ -39,7 +44,8 @@ class AppServiceProvider extends ServiceProvider
                     SiteSettingResource::class,
                     BrandResource::class,
                     PageResource::class,
-
+                    ProductTypeResource::class,
+                    OurTeamResource::class,
                     ])
                 ->plugins([
                 new ShippingPlugin,
@@ -75,6 +81,10 @@ class AppServiceProvider extends ServiceProvider
         ModelManifest::replace(
             \Lunar\Models\Contracts\Brand::class,
             \App\Models\Brand::class
+        );
+        ModelManifest::replace(
+            \Lunar\Models\Contracts\ProductType::class,
+            \App\Models\ProductType::class
         );
     }
 }
