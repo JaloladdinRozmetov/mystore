@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Filament\Resources\BrandResource;
-use App\Filament\Resources\CollectionResource;
 use App\Filament\Resources\ContactResource;
 use App\Filament\Resources\NewsResource;
 use App\Filament\Resources\OurTeamResource;
@@ -11,7 +10,6 @@ use App\Filament\Resources\PageResource;
 use App\Filament\Resources\ProductTypeResource;
 use App\Filament\Resources\ServiceResource;
 use App\Filament\Resources\SiteSettingResource;
-use App\Filament\Resources\TaxResource;
 use App\Filament\Resources\UserResource;
 use App\Models\News;
 use App\Models\SiteSetting;

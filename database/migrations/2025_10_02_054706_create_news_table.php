@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $t) {
             $t->id();
-            $t->foreignId('author_id')->constrained('users')->cascadeOnDelete();
 
             // Uzbek (required)
             $t->string('title_uz');          // NOT NULL

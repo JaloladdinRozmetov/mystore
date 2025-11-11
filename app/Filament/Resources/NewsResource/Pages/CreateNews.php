@@ -18,9 +18,6 @@ class CreateNews extends CreateRecord
             $data['slug'] = Str::slug($data['title_uz'] ?? 'news');
         }
 
-        // set author
-        $data['author_id'] = auth()->id() ?? $data['author_id'] ?? null;
-
         // publish time
         $data['published_at'] = ($data['status'] ?? 'draft') === 'published'
             ? ($data['published_at'] ?? now())

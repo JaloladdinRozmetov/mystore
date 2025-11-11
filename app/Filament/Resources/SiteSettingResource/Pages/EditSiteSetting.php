@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\SiteSettingResource\Pages;
 
 use App\Filament\Resources\SiteSettingResource;
+use App\Models\SiteSetting;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 

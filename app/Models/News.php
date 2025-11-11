@@ -17,7 +17,6 @@ class News extends Model implements HasThumbnailImage, SpatieHasMedia
     use HasFactory, SoftDeletes, InteractsWithMedia;
 
     protected $fillable = [
-        'author_id',
         'title_uz', 'excerpt_uz', 'description_uz',
         'title_ru', 'excerpt_ru', 'description_ru',
         'title_en', 'excerpt_en', 'description_en',
@@ -146,13 +145,4 @@ class News extends Model implements HasThumbnailImage, SpatieHasMedia
         });
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Relations
-    |--------------------------------------------------------------------------
-    */
-    public function author()
-    {
-        return $this->belongsTo(User::class, 'author_id');
-    }
 }
