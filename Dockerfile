@@ -1,4 +1,4 @@
-ARG PHP_VERSION=8.2
+ARG PHP_VERSION=8.3
 ARG COMPOSER_VERSION=2.4
 
 ### COMPOSER ###
@@ -18,10 +18,27 @@ RUN apk add --no-cache \
       wget \
       sudo \
       bash \
-      sudo \
       supervisor \
       npm \
-      aws-cli
+      aws-cli \
+      # build tools and headers needed to compile PHP extensions
+      build-base \
+      autoconf \
+      automake \
+      libtool \
+      linux-headers \
+      pkgconfig \
+      # postgres client & headers
+      postgresql-dev \
+      # common dev libs for gd/intl etc
+      freetype-dev \
+      libjpeg-turbo-dev \
+      libpng-dev \
+      zlib-dev \
+      icu-dev \
+      openssl-dev \
+      # optionally: runtime libs
+      libpq
 
 RUN apk add --no-cache --allow-untrusted /gnu-libiconv-1.15-r3.apk
 RUN rm /gnu-libiconv-1.15-r3.apk
@@ -31,6 +48,8 @@ RUN install-php-extensions  \
     intl \
     mysqli \
     pdo_mysql \
+    pdo_pgsql \
+    pgsql \
     curl \
     dom \
     fileinfo \
@@ -45,8 +64,8 @@ RUN install-php-extensions  \
     opcache \
     zip \
     exif
-
 RUN export COMPOSER_PROCESS_TIMEOUT=9000
+EXPOSE 9000
 
 COPY docker/php-fpm/dev/php.ini $PHP_INI_DIR/php.ini
 

@@ -13,7 +13,7 @@ if [ "$1" = 'php-fpm' ] || [ "$1" = 'artisan' ]; then
 
 	echo "Launch project Lunar!"
 
-	until nc -z -v -w30 mysql 3306
+	until nc -z -v -w30 db 5432
 	do
 	  echo "Waiting for database connection..."
 	  # wait for 5 seconds before check again
@@ -33,8 +33,6 @@ if [ "$1" = 'php-fpm' ] || [ "$1" = 'artisan' ]; then
         php artisan lunarphp:search:index
 	fi
 
-    echo -e "$CYAN Would you like to show some love by giving us a star ⭐ on GitHub?"
-    echo -e "$CYAN Visit : https://github.com/lunarphp/lunar"
     echo -e "Your project is live ! Storefront available here: http://localhost"
 fi
 
